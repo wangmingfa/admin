@@ -8,7 +8,7 @@ $(function(){
         if(!data.password) return alert("密码为空！");
 
         $.post("/admin/login", {user: data}, function(result){
-            if(result.success) return location.reload();
+            if(result.success) return location.href = document.referer || "/admin/menu/list";
             alert(result.msg);
         });
     });

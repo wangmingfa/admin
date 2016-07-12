@@ -17,7 +17,6 @@ $(function(){
                 dataType: "json",
                 success: function(result){
                     if(result.success) {
-                        alert("删除成功");
                         return location.reload();
                     }
                     alert("删除失败！");

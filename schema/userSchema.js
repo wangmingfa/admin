@@ -19,10 +19,10 @@ UserSchema.statics = {
             if(!isCrect) return callback({message: "密码错误"});
             callback(null, result);
         });
-    },
+    }/*,
     find:function(args, callback){
         return this.find(args).exec(callback);
-    }
+    }*/
  }
 
 

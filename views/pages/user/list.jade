@@ -1,0 +1,13 @@
+extends ../../admin
+block content
+  .table-responsive
+    table.table.table-bordered
+      thead
+        tr
+          th 用户名
+          th 密码
+      tbody
+        each user in users
+          tr
+            td #{user.username}
+            td #{user.password}

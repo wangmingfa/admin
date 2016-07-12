@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var db = require("mongodb");
 var MenuSchema = new mongoose.Schema({
     icon: String,
     text: String,

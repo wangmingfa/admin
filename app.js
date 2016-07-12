@@ -17,7 +17,9 @@ db.once("open", function(callback){
 //路由
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var admin = require('./routes/admin');
+var menus = require('./routes/menus');
+var login = require("./routes/login");
+var logout = require("./routes/logout");
 
 var app = express();
 
@@ -42,9 +44,10 @@ app.use(session(({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
-
-app.use('/admin', admin);
+app.use('/admin/user', users);
+app.use('/admin/menu', menus);
+app.use("/admin/login", login);
+app.use("/admin/logout", logout);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
