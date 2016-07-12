@@ -1,0 +1,184 @@
+doctype html
+html(lang='en')
+  head
+    title= 登陆
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    // basic styles
+    link(href='/aceAdmin/assets/css/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/aceAdmin/assets/css/font-awesome.min.css')
+    //if IE 7
+      link(rel='stylesheet', href='/aceAdmin/assets/css/font-awesome-ie7.min.css')
+    // page specific plugin styles
+    // fonts
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans:400,300')
+    // ace styles
+    link(rel='stylesheet', href='/aceAdmin/assets/css/ace.min.css')
+    link(rel='stylesheet', href='/aceAdmin/assets/css/ace-rtl.min.css')
+    //if lte IE 8
+      link(rel='stylesheet', href='/aceAdmin/assets/css/ace-ie.min.css')
+    // inline styles related to this page
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src='/aceAdmin/assets/js/html5shiv.js')
+      | &#x9;&#x9;
+      script(src='/aceAdmin/assets/js/respond.min.js')
+    link(rel="stylesheet", href="/stylesheets/animate.css")
+  body.login-layout.animated.bounceInDown
+    .main-container
+      .main-content
+        .row
+          .col-sm-10.col-sm-offset-1
+            .login-container
+              .center
+                h1
+                  i.icon-leaf.green
+                  span.red WMF
+                  span.white Admin
+                h4.blue &copy; FarmingWang
+              .space-6
+              .position-relative
+                #login-box.login-box.visible.widget-box.no-border
+                  .widget-body
+                    .widget-main
+                      h4.header.blue.lighter.bigger
+                        i.icon-coffee.green
+                        | 登陆
+                      .space-6
+                      form(onsubmit="return false;")
+                        fieldset
+                          label.block.clearfix
+                            span.block.input-icon.input-icon-right
+                              input.form-control(type='text', placeholder='用户名', name="username")
+                              i.icon-user
+                          label.block.clearfix
+                            span.block.input-icon.input-icon-right
+                              input.form-control(type='password', placeholder='密码', name="password")
+                              i.icon-lock
+                          .space
+                          .clearfix
+                            label.inline
+                              input.ace(type='checkbox')
+                              span.lbl  记住我
+                            button#login.width-35.pull-right.btn.btn-sm.btn-primary(type='submit')
+                              i.icon-key
+                              | 登陆
+                          .space-4
+                      .social-or-login.center
+                        span.bigger-110 其它方式
+                      .social-login.center
+                        a.btn.btn-primary
+                          i.icon-facebook
+                        a.btn.btn-info
+                          i.icon-twitter
+                        a.btn.btn-danger
+                          i.icon-google-plus
+                    // /widget-main
+                    .toolbar.clearfix.hidden
+                      div
+                        a.forgot-password-link(href='#', onclick="show_box('forgot-box'); return false;")
+                          i.icon-arrow-left
+                          | 忘记密码
+                      div
+                        a.user-signup-link(href='#', onclick="show_box('signup-box'); return false;")
+                          | 我要注册
+                          i.icon-arrow-right
+                  // /widget-body
+                // /login-box
+                #forgot-box.forgot-box.widget-box.no-border
+                  .widget-body
+                    .widget-main
+                      h4.header.red.lighter.bigger
+                        i.icon-key
+                        | 找回密码
+                      .space-6
+                      p
+                        | 请输入绑定的电子邮箱来接收邮件
+                      form
+                        fieldset
+                          label.block.clearfix
+                            span.block.input-icon.input-icon-right
+                              input.form-control(type='email', placeholder='Email')
+                              i.icon-envelope
+                          .clearfix
+                            button.width-35.pull-right.btn.btn-sm.btn-danger(type='button')
+                              i.icon-lightbulb
+                              | 确定
+                    // /widget-main
+                    .toolbar.center
+                      a.back-to-login-link(href='#', onclick="show_box('login-box'); return false;")
+                        | 返回登陆
+                        i.icon-arrow-right
+                  // /widget-body
+                // /forgot-box
+                #signup-box.signup-box.widget-box.no-border
+                  .widget-body
+                    .widget-main
+                      h4.header.green.lighter.bigger
+                        i.icon-group.blue
+                        | 注册账号
+                      .space-6
+                      p  请输入您的信息:
+                      form
+                        fieldset
+                          label.block.clearfix
+                            span.block.input-icon.input-icon-right
+                              input.form-control(type='text', placeholder='用户名')
+                              i.icon-user
+                          label.block.clearfix
+                            span.block.input-icon.input-icon-right
+                              input.form-control(type='password', placeholder='密码')
+                              i.icon-lock
+                          label.block.clearfix
+                            span.block.input-icon.input-icon-right
+                              input.form-control(type='password', placeholder='重复密码')
+                              i.icon-retweet
+                          label.block.clearfix
+                            span.block.input-icon.input-icon-right
+                              input.form-control(type='email', placeholder='Email')
+                              i.icon-envelope
+                          label.block
+                            input.ace(type='checkbox')
+                            span.lbl
+                              | 我同意
+                              a(href='#') 用户协议
+                          .space-24
+                          .clearfix
+                            button.width-30.pull-left.btn.btn-sm(type='reset')
+                              i.icon-refresh
+                            button.width-65.pull-right.btn.btn-sm.btn-success(type='button')
+                              | Register
+                              i.icon-arrow-right.icon-on-right
+                    .toolbar.center
+                      a.back-to-login-link(href='#', onclick="show_box('login-box'); return false;")
+                        i.icon-arrow-left
+                        | 返回登陆
+                  // /widget-body
+                // /signup-box
+              // /position-relative
+          // /.col
+        // /.row
+    // /.main-container
+    // basic scripts
+    //if !IE
+    script(src='/libs/jquery/dist/jquery.min.js')
+    // <![endif]
+    //if IE
+      script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+    //if !IE
+    script(type='text/javascript').
+      window.jQuery || document.write("<script src='/aceAdmin/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+    // <![endif]
+    //if IE
+      script(type='text/javascript').
+        window.jQuery || document.write("<script src='/aceAdmin/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+    script(type='text/javascript').
+      if("ontouchend" in document) document.write("<script src='/aceAdmin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    // inline scripts related to this page
+    script(type='text/javascript').
+      function show_box(id) {
+        jQuery('.widget-box.visible').removeClass('visible');
+        jQuery('#'+id).addClass('visible');
+      }
+    script(src="/javascripts/myUtils.js" type="text/javascript")
+    script(src="/javascripts/login/login.js" type="text/javascript")

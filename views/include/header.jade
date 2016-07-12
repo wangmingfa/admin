@@ -130,10 +130,10 @@
                                 i.icon-arrow-right
                 li.light-blue
                     a.dropdown-toggle(data-toggle='dropdown', href='#')
-                        img.nav-user-photo(src='/aceAdmin/assets/avatars/user.jpg', alt="FarmingWang's Photo")
+                        img.nav-user-photo(src='/aceAdmin/assets/avatars/user.jpg', alt="#{user.username}'s Photo")
                         span.user-info
                             small 您好,
-                            | FarmingWang
+                            | #{user.username}
                         i.icon-caret-down
                     ul.user-menu.pull-right.dropdown-menu.dropdown-yellow.dropdown-caret.dropdown-close
                         li
@@ -146,6 +146,6 @@
                                 | 用户信息
                         li.divider
                         li
-                            a(href='/logout')
+                            a(href='/admin/logout')
                                 i.icon-off
                                 | 注销

@@ -1,0 +1,86 @@
+doctype html
+html(lang='en')
+  head
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    // basic styles
+    link(href='/aceAdmin/assets/css/bootstrap.min.css', rel='stylesheet')
+    | &#x9;&#x9;
+    link(rel='stylesheet', href='/aceAdmin/assets/css/font-awesome.min.css')
+    //if IE 7
+      link(rel='stylesheet', href='/aceAdmin/assets/css/font-awesome-ie7.min.css')
+    // page specific plugin styles
+    // fonts
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans:400,300')
+    // ace styles
+    link(rel='stylesheet', href='/aceAdmin/assets/css/ace.min.css')
+    | &#x9;&#x9;
+    link(rel='stylesheet', href='/aceAdmin/assets/css/ace-rtl.min.css')
+    | &#x9;&#x9;
+    link(rel='stylesheet', href='/aceAdmin/assets/css/ace-skins.min.css')
+    //if lte IE 8
+      link(rel='stylesheet', href='/aceAdmin/assets/css/ace-ie.min.css')
+    // inline styles related to this page
+    // ace settings handler
+    script(src='/aceAdmin/assets/js/ace-extra.min.js')
+    // HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src='/aceAdmin/assets/js/html5shiv.js')
+      | &#x9;&#x9;
+      script(src='/aceAdmin/assets/js/respond.min.js')
+  | &#x9;
+  body
+    .page-content
+      .row
+        .col-xs-12
+          // PAGE CONTENT BEGINS
+          .error-container
+            .well
+              h1.grey.lighter.smaller
+                span.blue.bigger-125
+                  i.icon-sitemap
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;404
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Page Not Found
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              hr
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              h3.lighter.smaller We looked everywhere but we couldn&apos;t find it!
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              div
+                form.form-search
+                  span.input-icon.align-middle
+                    i.icon-search
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                    input.search-query(type='text', placeholder='Give it a search...')
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  button.btn.btn-sm(onclick='return false;') Go!
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                .space
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                h4.smaller Try one of the following:
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                ul.list-unstyled.spaced.inline.bigger-110.margin-15
+                  li
+                    i.icon-hand-right.blue
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Re-check the url for typos
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    i.icon-hand-right.blue
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Read the faq
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                  li
+                    i.icon-hand-right.blue
+                    | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Tell us about it
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              hr
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .space
+              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+              .center
+                a.btn.btn-grey(href='/admin/menu/list')
+                  i.icon-arrow-left
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Go Back
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                a.btn.btn-primary(href='/admin/menu/list')
+                  i.icon-dashboard
+                  | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Dashboard
+          // PAGE CONTENT ENDS

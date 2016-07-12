@@ -5,6 +5,7 @@ var MenuSchema = new mongoose.Schema({
     text: String,
     isLeaf: Boolean,
     href: String,
+    level: Number,
     fatherId: String,
     type: Number
 });

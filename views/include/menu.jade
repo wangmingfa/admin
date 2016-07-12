@@ -22,23 +22,24 @@
   // #sidebar-shortcuts
   ul.nav.nav-list
     each menu in menus
-      if(menu.isLeaf)
-        li(class="#{menu.cls}")
-          a(href="#{menu.href}")
-            i(class="#{menu.icon}")
-            span.menu-text #{menu.text}
-      else
-        li(class="#{menu.cls}")
-          a.dropdown-toggle
-            i(class="#{menu.icon}")
-            span.menu-text #{menu.text}
-            b.arrow.icon-angle-down
-          ul.submenu
-            each submenu in menu.submenu
-              li(class="#{submenu.cls}")
-                a(href="#{submenu.href}")
-                  i.icon-double-angle-right
-                  | #{submenu.text}
+      if(menu.type != 1)
+        if(menu.isLeaf)
+          li(class="#{menu.cls}")
+            a(href="#{menu.href}")
+              i(class="#{menu.icon}")
+              span.menu-text #{menu.text}
+        else
+          li(class="#{menu.cls}")
+            a.dropdown-toggle
+              i(class="#{menu.icon}")
+              span.menu-text #{menu.text}
+              b.arrow.icon-angle-down
+            ul.submenu
+              each submenu in menu.submenu
+                li(class="#{submenu.cls}")
+                  a(href="#{submenu.href}")
+                    i.icon-double-angle-right
+                    | #{submenu.text}
   #sidebar-collapse.sidebar-collapse
     i.icon-double-angle-left(data-icon1='icon-double-angle-left', data-icon2='icon-double-angle-right')
   script(type='text/javascript').

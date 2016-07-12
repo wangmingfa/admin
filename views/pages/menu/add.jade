@@ -24,6 +24,16 @@ block content
               else
                 option(value="#{rootMenu._id}") #{rootMenu.text}
     .form-group
+      label.control-label.col-sm-2(for="isLeaf") 是否末级
+      .col-sm-8
+        select.form-control(id="isLeaf", name="menu[isLeaf]")
+          if(menu && menu.isLeaf == 1)
+            option(value="1", selected="selected") 是
+            option(value="0") 否
+          else
+            option(value="1") 是
+            option(value="0", selected="selected") 否
+    .form-group
       label.control-label.col-sm-2(for="href") 菜单地址
       .col-sm-8
         input.form-control(id="href", name="menu[href]", value="#{menu ? menu.href : ''}")
