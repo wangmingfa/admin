@@ -1,0 +1,50 @@
+extends ../../admin
+block content
+  form.form-horizontal(action="/admin/menu/add", method="post")
+    - if(error)
+      .alert.alert-danger #{error.msg}
+    input(type="hidden", name="menu[_id]", value="#{menu ? menu._id : ''}")
+    .form-group
+      label.control-label.col-sm-2(for="icon") 菜单图标
+      .col-sm-8
+        input.form-control(id="icon", name="menu[icon]", value="#{menu ? menu.icon : ''}")
+    .form-group
+      label.control-label.col-sm-2(for="icon") 菜单名称
+      .col-sm-8
+        input.form-control(id="text", name="menu[text]", value="#{menu ? menu.text : ''}")
+    .form-group
+      label.control-label.col-sm-2(for="fatherId") 上级菜单
+      .col-sm-8
+        select.form-control(id="fatherId", name="menu[fatherId]")
+          option(value="")
+          each rootMenu in menus
+            if(!rootMenu.isLeaf)
+              if(menu && menu.fatherId == rootMenu._id)
+                option(value="#{rootMenu._id}", selected="selected") #{rootMenu.text}
+              else
+                option(value="#{rootMenu._id}") #{rootMenu.text}
+    .form-group
+      label.control-label.col-sm-2(for="href") 菜单地址
+      .col-sm-8
+        input.form-control(id="href", name="menu[href]", value="#{menu ? menu.href : ''}")
+    .form-group
+      label.control-label.col-sm-2(for="type") 菜单类型
+      .col-sm-8
+        select.form-control(id="type", name="menu[type]")
+          if(menu && menu.type == 0)
+            option(value="0", selected="selected") 后台菜单
+            option(value="1") 业务菜单
+            option(value="2") 两者都是
+          else if(menu && menu.type == 1)
+            option(value="0") 后台菜单
+            option(value="1", selected="selected") 业务菜单
+            option(value="2") 两者都是
+          else
+            option(value="0") 后台菜单
+            option(value="1") 业务菜单
+            option(value="2", selected="selected") 两者都是
+    .form-group
+      label.control-label.col-sm-2
+      .col-sm-8
+        button.btn.btn-primary.col-sm-2(type="submit") 保存
+        button.btn.btn-primary.col-sm-2(type="reset") 重置

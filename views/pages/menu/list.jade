@@ -1,0 +1,49 @@
+extends ../../admin
+block content
+  .table-responsive
+    table.table.table-bordered
+      thead
+        tr
+          th.center(style="width:8%;") 展开/收起
+          th 菜单名称
+          th 菜单图标
+          //th 上级菜单
+          th 是否末级
+          th 菜单地址
+          th 菜单类型
+          th 操作
+      tbody
+        each menu, index in menus
+          tr.toggle-menu(data-target="[data-id='submenu-#{index}']")
+            td.center(style="width:8%;")
+              i.toggle-menu-i.icon-plus(data-target="[data-id='submenu-#{index}']", style="cursor:pointer;")
+            td #{menu.text}
+            td
+              i(class="#{menu.icon}")
+            //td #{menu.fahterId}
+            td #{menu.isLeaf ? "是" : "否"}
+            td #{menu.href}
+            td #{menu.type == 0 ? "后台菜单" : (menu.type == 1 ? "逻辑菜单" : "两者都是")}
+            td
+              a(href="/admin/menu/add?menuId=#{menu._id}") 修改
+          each submenu in menu.submenu
+            tr.hidden(data-id="submenu-#{index}").bg-gray
+              td.center(style="width:8%;")
+              td &nbsp;&nbsp;&nbsp;&nbsp;#{submenu.text}
+              td
+                i(class="#{submenu.icon}")
+              //td #{submenu.fahterId}
+              td #{submenu.isLeaf ? "是" : "否"}
+              td #{submenu.href}
+              td #{submenu.type == 0 ? "后台菜单" : (submenu.type == 1 ? "逻辑菜单" : "两者都是")}
+              td
+                a(href="/admin/menu/add?menuId=#{submenu._id}") 修改
+
+  script(src="/javascripts/admin/menu/list.js")
+  style.
+    .bg-gray{
+      background-color: #f4f4f4;
+    }
+    th, td{
+      width: 15.1666666666%;
+    }

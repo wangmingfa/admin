@@ -1,0 +1,32 @@
+link(href='/aceAdmin/assets/css/bootstrap.min.css', rel='stylesheet')
+link(rel='stylesheet', href='/aceAdmin/assets/css/font-awesome.min.css')
+//if IE 7
+  link(rel='stylesheet', href='assets/css/font-awesome-ie7.min.css')
+link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Open+Sans:400,300')
+// ace styles
+link(rel='stylesheet', href='/aceAdmin/assets/css/ace.min.css')
+link(rel='stylesheet', href='/aceAdmin/assets/css/ace-rtl.min.css')
+link(rel='stylesheet', href='/aceAdmin/assets/css/ace-skins.min.css')
+//if lte IE 8
+  link(rel='stylesheet', href='/aceAdmin/assets/css/ace-ie.min.css')
+// inline styles related to this page
+// ace settings handler
+script(src='/aceAdmin/assets/js/ace-extra.min.js')
+// HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+//if lt IE 9
+  script(src='/aceAdmin/assets/js/html5shiv.js')
+  script(src='/aceAdmin/assets/js/respond.min.js')
+
+script(src='/libs/jquery/dist/jquery.min.js')
+  //if IE
+    script(type='text/javascript').
+      window.jQuery || document.write("<script src='/aceAdmin/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+  script(type='text/javascript').
+    if("ontouchend" in document) document.write("<script src='/aceAdmin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+  script(src='/aceAdmin/assets/js/bootstrap.min.js')
+  script(src='/aceAdmin/assets/js/typeahead-bs2.min.js')
+  // page specific plugin scripts
+  // ace scripts
+  script(src='/aceAdmin/assets/js/ace-elements.min.js')
+  script(src='/aceAdmin/assets/js/ace.min.js')
+  // inline scripts related to this page

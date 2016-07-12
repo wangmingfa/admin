@@ -1,0 +1,96 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title= title
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    include include/resource.jade
+  body
+    include include/header.jade
+    #main-container.main-container
+      script(type='text/javascript').
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+      .main-container-inner
+        a#menu-toggler.menu-toggler(href='#')
+          span.menu-text
+        include include/menu.jade
+        .main-content
+          #breadcrumbs.breadcrumbs
+            script(type='text/javascript').
+              try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+            | 
+            ul.breadcrumb
+              li
+                i(class="#{path[0] ? path[0].icon : ''}")
+                | #{path[0] ? path[0].text : ""}
+              li
+                a(href="#{path[1] ? path[1].href : ''}") #{path[1] ? path[1].text : ""}
+            // .breadcrumb
+            #nav-search.nav-search
+              form.form-search
+                span.input-icon
+                  input#nav-search-input.nav-search-input(type='text', placeholder='查找 ...', autocomplete='off')
+                  | 
+                  i.icon-search.nav-search-icon
+            // #nav-search
+          .page-content
+            .row
+              .col-xs-12
+                // PAGE CONTENT BEGINS
+                block content
+                // PAGE CONTENT ENDS
+              // /.col
+            // /.row
+          // /.page-content
+        // /.main-content
+        #ace-settings-container.ace-settings-container
+          #ace-settings-btn.btn.btn-app.btn-xs.btn-warning.ace-settings-btn
+            i.icon-cog.bigger-150
+          | 
+          #ace-settings-box.ace-settings-box
+            div
+              .pull-left
+                select#skin-colorpicker.hide
+                  option(data-skin='default', value='#438EB9') #438EB9
+                  | 
+                  option(data-skin='skin-1', value='#222A2D') #222A2D
+                  | 
+                  option(data-skin='skin-2', value='#C6487E') #C6487E
+                  | 
+                  option(data-skin='skin-3', value='#D0D0D0') #D0D0D0
+              | 
+              span &nbsp; 皮肤
+            | 
+            div
+              input#ace-settings-navbar.ace.ace-checkbox-2(type='checkbox')
+              | 
+              label.lbl(for='ace-settings-navbar')  Fixed Navbar
+            | 
+            div
+              input#ace-settings-sidebar.ace.ace-checkbox-2(type='checkbox')
+              | 
+              label.lbl(for='ace-settings-sidebar')  Fixed Sidebar
+            | 
+            div
+              input#ace-settings-breadcrumbs.ace.ace-checkbox-2(type='checkbox')
+              | 
+              label.lbl(for='ace-settings-breadcrumbs')  Fixed Breadcrumbs
+            | 
+            div
+              input#ace-settings-rtl.ace.ace-checkbox-2(type='checkbox')
+              | 
+              label.lbl(for='ace-settings-rtl')  Right To Left (rtl)
+            | 
+            div
+              input#ace-settings-add-container.ace.ace-checkbox-2(type='checkbox')
+              | 
+              label.lbl(for='ace-settings-add-container')
+                | Inside
+                b .container
+        // /#ace-settings-container
+      // /.main-container-inner
+      a#btn-scroll-up.btn-scroll-up.btn.btn-sm.btn-inverse(href='#')
+        i.icon-double-angle-up.icon-only.bigger-110
+    // /.main-container
+    // basic scripts
+

@@ -1,0 +1,151 @@
+#navbar.navbar.navbar-default
+    script(type='text/javascript').
+        try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+    #navbar-container.navbar-container
+        .navbar-header.pull-left
+            a.navbar-brand(href='/admin')
+                small
+                    i.icon-leaf
+                    | #{title}
+        .navbar-header.pull-right(role='navigation')
+            ul.nav.ace-nav(style="height:auto")
+                li.grey
+                    a.dropdown-toggle(data-toggle='dropdown', href='#')
+                        i.icon-tasks
+                        span.badge.badge-grey 4
+                    ul.pull-right.dropdown-navbar.dropdown-menu.dropdown-caret.dropdown-close
+                        li.dropdown-header
+                            i.icon-ok
+                            | 4个任务需要完成
+                        li
+                            a(href='#')
+                                .clearfix
+                                    span.pull-left 软件升级
+                                    span.pull-right 65%
+                                .progress.progress-mini
+                                    .progress-bar(style='width:65%')
+                        li
+                            a(href='#')
+                                .clearfix
+                                    span.pull-left 硬件升级
+                                    span.pull-right 35%
+                                .progress.progress-mini
+                                    .progress-bar.progress-bar-danger(style='width:35%')
+                        li
+                            a(href='#')
+                                .clearfix
+                                    span.pull-left 单元测试
+                                    span.pull-right 15%
+                                .progress.progress-mini
+                                    .progress-bar.progress-bar-warning(style='width:15%')
+                        li
+                            a(href='#')
+                                .clearfix
+                                    span.pull-left Bug修复
+                                    span.pull-right 90%
+                                .progress.progress-mini.progress-striped.active
+                                    .progress-bar.progress-bar-success(style='width:90%')
+                        li
+                            a(href='#')
+                                | 查看任务详情
+                                i.icon-arrow-right
+                li.purple
+                    a.dropdown-toggle(data-toggle='dropdown', href='#')
+                        i.icon-bell-alt.icon-animated-bell
+                        span.badge.badge-important 8
+                    ul.pull-right.dropdown-navbar.navbar-pink.dropdown-menu.dropdown-caret.dropdown-close
+                        li.dropdown-header
+                            i.icon-warning-sign
+                            | 8个通知
+                        li
+                            a(href='#')
+                                .clearfix
+                                    span.pull-left
+                                        i.btn.btn-xs.no-hover.btn-pink.icon-comment
+                                        | 新的评论
+                                    span.pull-right.badge.badge-info +12
+                        li
+                            a(href='#')
+                                i.btn.btn-xs.btn-primary.icon-user
+                                | Bob just signed up as an editor ...
+                        li
+                            a(href='#')
+                                .clearfix
+                                    span.pull-left
+                                        i.btn.btn-xs.no-hover.btn-success.icon-shopping-cart
+                                        | 新的订单
+                                    span.pull-right.badge.badge-success +8
+                        li
+                            a(href='#')
+                                .clearfix
+                                    span.pull-left
+                                        i.btn.btn-xs.no-hover.btn-info.icon-twitter
+                                        | 收到花朵
+                                    span.pull-right.badge.badge-info +11
+                        li
+                            a(href='#')
+                                | 查看所有通知
+                                i.icon-arrow-right
+                li.green
+                    a.dropdown-toggle(data-toggle='dropdown', href='#')
+                        i.icon-envelope.icon-animated-vertical
+                        span.badge.badge-success 5
+                    ul.pull-right.dropdown-navbar.dropdown-menu.dropdown-caret.dropdown-close
+                        li.dropdown-header
+                            i.icon-envelope-alt
+                            | 5条信息
+                        li
+                            a(href='#')
+                                img.msg-photo(src='/aceAdmin/assets/avatars/avatar.png', alt="Alex's Avatar")
+                                span.msg-body
+                                    span.msg-title
+                                        span.blue Alex:
+                                        | Ciao sociis natoque penatibus et auctor ...
+                                    span.msg-time
+                                        i.icon-time
+                                        span 不久前
+                        li
+                            a(href='#')
+                                img.msg-photo(src='/aceAdmin/assets/avatars/avatar3.png', alt="Susan's Avatar")
+                                span.msg-body
+                                    span.msg-title
+                                        span.blue Susan:
+                                        | Vestibulum id ligula porta felis euismod ...
+                                    span.msg-time
+                                        i.icon-time
+                                        span 20分钟前
+                        li
+                            a(href='#')
+                                img.msg-photo(src='/aceAdmin/assets/avatars/avatar4.png', alt="Bob's Avatar")
+                                span.msg-body
+                                    span.msg-title
+                                        span.blue Bob:
+                                        | Nullam quis risus eget urna mollis ornare ...
+                                    span.msg-time
+                                        i.icon-time
+                                        span 3:15 pm
+                        li
+                            a(href='inbox.html')
+                                | 查看所有信息
+                                i.icon-arrow-right
+                li.light-blue
+                    a.dropdown-toggle(data-toggle='dropdown', href='#')
+                        img.nav-user-photo(src='/aceAdmin/assets/avatars/user.jpg', alt="FarmingWang's Photo")
+                        span.user-info
+                            small 您好,
+                            | FarmingWang
+                        i.icon-caret-down
+                    ul.user-menu.pull-right.dropdown-menu.dropdown-yellow.dropdown-caret.dropdown-close
+                        li
+                            a(href='/settings')
+                                i.icon-cog
+                                | 设置
+                        li
+                            a(href='/profile')
+                                i.icon-user
+                                | 用户信息
+                        li.divider
+                        li
+                            a(href='/logout')
+                                i.icon-off
+                                | 注销

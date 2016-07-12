@@ -1,0 +1,48 @@
+#sidebar.sidebar
+  script(type='text/javascript').
+    try {
+      ace.settings.check('sidebar', 'fixed')
+    } catch (e) {
+    }
+  #sidebar-shortcuts.sidebar-shortcuts
+    #sidebar-shortcuts-large.sidebar-shortcuts-large
+      button.btn.btn-success
+        i.icon-signal
+      button.btn.btn-info
+        i.icon-pencil
+      button.btn.btn-warning
+        i.icon-group
+      button.btn.btn-danger
+        i.icon-cogs
+    #sidebar-shortcuts-mini.sidebar-shortcuts-mini
+      span.btn.btn-success
+      span.btn.btn-info
+      span.btn.btn-warning
+      span.btn.btn-danger
+  // #sidebar-shortcuts
+  ul.nav.nav-list
+    each menu in menus
+      if(menu.isLeaf)
+        li(class="#{menu.cls}")
+          a(href="#{menu.href}")
+            i(class="#{menu.icon}")
+            span.menu-text #{menu.text}
+      else
+        li(class="#{menu.cls}")
+          a.dropdown-toggle
+            i(class="#{menu.icon}")
+            span.menu-text #{menu.text}
+            b.arrow.icon-angle-down
+          ul.submenu
+            each submenu in menu.submenu
+              li(class="#{submenu.cls}")
+                a(href="#{submenu.href}")
+                  i.icon-double-angle-right
+                  | #{submenu.text}
+  #sidebar-collapse.sidebar-collapse
+    i.icon-double-angle-left(data-icon1='icon-double-angle-left', data-icon2='icon-double-angle-right')
+  script(type='text/javascript').
+    try {
+      ace.settings.check('sidebar', 'collapsed')
+    } catch (e) {
+    }
