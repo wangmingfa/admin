@@ -18,15 +18,17 @@ script(src='/aceAdmin/assets/js/ace-extra.min.js')
   script(src='/aceAdmin/assets/js/respond.min.js')
 
 script(src='/libs/jquery/dist/jquery.min.js')
-  //if IE
-    script(type='text/javascript').
-      window.jQuery || document.write("<script src='/aceAdmin/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+//if IE
   script(type='text/javascript').
-    if("ontouchend" in document) document.write("<script src='/aceAdmin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-  script(src='/aceAdmin/assets/js/bootstrap.min.js')
-  script(src='/aceAdmin/assets/js/typeahead-bs2.min.js')
-  // page specific plugin scripts
-  // ace scripts
-  script(src='/aceAdmin/assets/js/ace-elements.min.js')
-  script(src='/aceAdmin/assets/js/ace.min.js')
-  // inline scripts related to this page
+    window.jQuery || document.write("<script src='/aceAdmin/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+script(type='text/javascript').
+  if("ontouchend" in document) document.write("<script src='/aceAdmin/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+script(src='/aceAdmin/assets/js/bootstrap.min.js')
+script(src='/aceAdmin/assets/js/typeahead-bs2.min.js')
+// page specific plugin scripts
+// ace scripts
+script(src='/aceAdmin/assets/js/ace-elements.min.js')
+script(src='/aceAdmin/assets/js/ace.min.js')
+script(src='/plugins/custom/getResultFromTemplate.js')
+script(src='/plugins/custom/modal.js')
+script(src='/plugins/custom/formWidget.js')
