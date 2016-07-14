@@ -15,9 +15,11 @@
     "express": "~4.13.4",
     "express-session": "^1.14.0",
     "jade": "~1.11.0",
+    "moment": "^2.14.1",
     "mongodb": "^2.1.18",
     "mongoose": "^4.5.3",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "underscore": "^1.8.3"
   }
 }

@@ -44,8 +44,10 @@ router.post('*', function(req, res, next) {
     });
 });*/
 
+router.get("*", checkLogin);
+router.post("*", checkLogin);
 
-router.get("/list", checkLogin, function(req, res, next){
+router.get("/list", function(req, res, next){
     var menus = req.data.menus;
     var currentPage = req.data.currentPage;
     var path = req.data.path;
@@ -53,7 +55,7 @@ router.get("/list", checkLogin, function(req, res, next){
     res.render("pages/menu/list", {menus:menus, path:path, user: user});
 });
 
-router.get("/add", checkLogin, function(req, res, next){
+/*router.get("/add", function(req, res, next){
     var menus = req.data.menus;
     var currentPage = req.data.currentPage;
     var path = req.data.path;
@@ -67,31 +69,36 @@ router.get("/add", checkLogin, function(req, res, next){
         });
     }
     res.render("pages/menu/add", {menus:menus, path:path, user: req.session.user});
-});
+});*/
 
 //新增或修改 菜单
-router.post("/add", checkLogin, function(req, res, next){
+router.post("/add", function(req, res, next){
     var menus = req.data.menus;
-    var _menu = req.body.menu;
-    if(!_menu) return res.redirect("pages/menu/add");
+    var _menu = req.body;
+    if(!_menu) return res.json({success: false, message: "invalid parameter"});
+    console.log(_menu);
     if(!_menu._id) delete _menu._id;
     //_menu.isLeaf = !!_menu.fatherId;
     _menu.level = _menu.fatherId ? 1 : 0;
     if(!_menu._id){
         var menu = new Menu(_menu);
         return menu.save(function(err, doc){
-            if(err) return res.render("pages/menu/add", {menus:menus, path:path, menu:_menu, error:{msg: "新增菜单失败！" + err}});
-            res.redirect("/admin/menu/list");
+            /*if(err) return res.render("pages/menu/add", {menus:menus, path:path, menu:_menu, error:{msg: "新增菜单失败！" + err}});
+            res.redirect("/admin/menu/list");*/
+            if(err) return res.json({success: false, message: "新增菜单失败！"});
+            res.json({success: true, message: "新增菜单成功！"});
         });
     }
     Menu.update({_id:_menu._id}, {$set: _menu}, function(err, doc){
-        if(err) return console.log(err), res.render("pages/menu/add", {menus:menus, path:path, menu:_menu, error:{msg: "修改菜单失败！"}});
-        return res.redirect("/admin/menu/list");
+        /*if(err) return console.log(err), res.render("pages/menu/add", {menus:menus, path:path, menu:_menu, error:{msg: "修改菜单失败！"}});
+        return res.redirect("/admin/menu/list");*/
+        if(err) return res.json({success: false, message: "修改菜单失败！"});
+        res.json({success: true, message: "修改菜单成功！"});
     });
 });
 
 //删除菜单
-router.delete("/delete", checkLogin, function(req, res, nex){
+router.delete("/delete", function(req, res, nex){
     var _id = req.body._id;
     Menu.remove({_id: _id}, function(err, result){
         if(err) return res.json({success: false});
@@ -99,5 +106,23 @@ router.delete("/delete", checkLogin, function(req, res, nex){
     });
 });
 
+
+//查询所有菜单
+router.get("/getMenuAll", function(req, res, next){
+    Menu.find({}, function(err, results){
+        if(err) return res.json({success:false, message: err});
+        res.json(results);
+    });
+});
+
+//通过_id查询菜单
+router.get("/getMenuById", function(req, res, next){
+    var id = req.query.id;
+    if(!id) return res.json({success:false, message: "invalid id"});
+    Menu.getMenuById(id, function(err, result){
+        if(err) return res.json({success:false, message: err});
+        res.json(result);
+    });
+});
 
 module.exports = router;

@@ -44,6 +44,7 @@ html(lang='en')
                       h4.header.blue.lighter.bigger
                         i.icon-coffee.green
                         | 登陆
+                        span#login-msg.animated.red.pull-right
                       .space-6
                       form(onsubmit="return false;")
                         fieldset
@@ -74,7 +75,7 @@ html(lang='en')
                         a.btn.btn-danger
                           i.icon-google-plus
                     // /widget-main
-                    .toolbar.clearfix.hidden
+                    .toolbar.clearfix
                       div
                         a.forgot-password-link(href='#', onclick="show_box('forgot-box'); return false;")
                           i.icon-arrow-left
@@ -116,29 +117,30 @@ html(lang='en')
                     .widget-main
                       h4.header.green.lighter.bigger
                         i.icon-group.blue
-                        | 注册账号
+                        | 注册
+                        span#signup-msg.animated.red.pull-right
                       .space-6
                       p  请输入您的信息:
-                      form
+                      form(onsubmit="return false;")
                         fieldset
                           label.block.clearfix
                             span.block.input-icon.input-icon-right
-                              input.form-control(type='text', placeholder='用户名')
+                              input.form-control(type='text', name="username" placeholder='用户名')
                               i.icon-user
                           label.block.clearfix
                             span.block.input-icon.input-icon-right
-                              input.form-control(type='password', placeholder='密码')
+                              input.form-control(type='password', name="password" placeholder='密码')
                               i.icon-lock
                           label.block.clearfix
                             span.block.input-icon.input-icon-right
-                              input.form-control(type='password', placeholder='重复密码')
+                              input.form-control(type='password', name="repeatPassword", placeholder='重复密码')
                               i.icon-retweet
                           label.block.clearfix
                             span.block.input-icon.input-icon-right
-                              input.form-control(type='email', placeholder='Email')
+                              input.form-control(type='email', name="email", placeholder='Email')
                               i.icon-envelope
                           label.block
-                            input.ace(type='checkbox')
+                            input.ace(type='checkbox', id="isAgree")
                             span.lbl
                               | 我同意
                               a(href='#') 用户协议
@@ -146,8 +148,8 @@ html(lang='en')
                           .clearfix
                             button.width-30.pull-left.btn.btn-sm(type='reset')
                               i.icon-refresh
-                            button.width-65.pull-right.btn.btn-sm.btn-success(type='button')
-                              | Register
+                            button#signUp.width-65.pull-right.btn.btn-sm.btn-success(type='submit')
+                              | 注册
                               i.icon-arrow-right.icon-on-right
                     .toolbar.center
                       a.back-to-login-link(href='#', onclick="show_box('login-box'); return false;")

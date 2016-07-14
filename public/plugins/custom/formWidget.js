@@ -51,13 +51,38 @@ $.textarea = function(options){
 $.select = function(options){
     var template = '<select class="form-control" id="{{id}}" name="{{name}}" style="{{style}}"></select>';
 
-    var settings = $.extend({
+    var settings = $.extend(true, {
         id: "",
         name: "",
         style:"",
         selected: 0,
         event: {},
-        options: []
+        options: [],
+        remote: {
+            url: "",
+            method: "GET",
+            async: true,
+            cache: true,
+            data: {},
+            dataType: "json",
+            beforeSend: null,
+            complete: null,
+            success: function(result){
+                result.forEach(function(data, index){
+                    var valueField = settings.remote.valueField || "value";
+                    var textField = settings.remote.textField || "text";
+                    var template = '<option value="{{' + valueField + '}}">{{' + textField + '}}</option>';
+                    var $option = $($.getResultFromTemplate(template, data));
+                    $widget.append($option);
+                });
+                $widget.removeAttr("disabled");
+            },
+            error: null,
+            contentType: "application/x-www-form-urlencoded",
+            dataFilter: null,
+            valueField: "",
+            textField: ""
+        }
     }, options);
 
     var $widget = $($.getResultFromTemplate(template, settings));
@@ -75,6 +100,13 @@ $.select = function(options){
     for(var eventName in settings.event){
         var eventResponse = settings.event[eventName];
         $widget.on(eventName, eventResponse);
+    }
+
+    //远程加载数据
+    if(settings.remote.url){
+        $widget.attr("disabled", "disabled");
+        var ajaxOptions = settings.remote;
+        $.ajax(ajaxOptions);
     }
 
     return $widget;
@@ -103,34 +135,73 @@ $.switch = function(options){
 
 //弹出框表单
 $.modalForm = function(options){
-    var settings = $.extend({
+    var settings = $.extend(true, {
         title: "",
         cls: "form-horizontal",
         onsubmit: "return false",
-        elements: []
+        elements: [],
+        hideOnReset: true,
+        submit: {
+            url: "",
+            method: "POST",
+            timeout: "",
+            async: true,
+            cache: true,
+            data: {},
+            dataType: "json",
+            beforeSend: null,
+            complete: null,
+            success: null,
+            error: null,
+            contentType: "application/x-www-form-urlencoded",
+            dataFilter: null,
+        },
     }, options);
 
     var $widget = $($.getResultFromTemplate('<form class="{{cls}}" onsubmint="{{onsubmit}}"></form>', settings));
 
     settings.elements.forEach(function(element, index){
-        //for(var element in settings.element){
         var type = element.type;
         var options = element.options;
+        options.id = options.id ? options.id : options.name;
+        options.name = options.name ? options.name : options.id;
         var $element = $[type](options);
-        var template = '<div class="form-group">' +
-            '<label class="control-label col-sm-2">{{required}}{{title}}</label>' +
-            '<div class="col-sm-10 element"></div>' +
+        var template =
+            '<div class="form-group {{hidden}}">' +
+                '<label class="control-label col-sm-2">{{required}}{{title}}</label>' +
+                '<div class="col-sm-10 element"></div>' +
             '</div>';
+        options.hidden = options.type == "hidden" ? "hidden" : "";
         options.required = options.required ? "<span class='text-danger'>*</span>" : "";
         var $formGroup = $($.getResultFromTemplate(template, options));
         $formGroup.find(".element").append($element);
         $widget.append($formGroup);
-        //}
     });
 
-    return $.modal({
+    var $modal = $.modal({
         title: settings.title,
         content: $widget,
-        size: "lg"
+        size: "lg",
+        onConfirm: function(){
+            //TODO validate
+
+            if(settings.submit.url){
+                var ajaxOptions = $.extend({}, settings.submit, {data: $widget.serializeJson()});
+                $.ajax(ajaxOptions);
+            }
+        }
     });
+
+    //隐藏表单时清空表单
+    $modal.on("hidden.bs.modal", function(){
+        $widget[0].reset();
+    });
+
+    //表单赋值函数
+    $modal.setValue = function(data, onEvery){
+        $.setFormValue(data, $widget, onEvery);
+        return this;
+    }
+
+    return $modal;
 }

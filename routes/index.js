@@ -6,4 +6,8 @@ router.get('/', function(req, res, next) {
   res.redirect('/admin/menu/list');
 });
 
+router.get('/admin', function(req, res, next) {
+  res.redirect('/admin/menu/list');
+});
+
 module.exports = router;

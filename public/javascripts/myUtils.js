@@ -192,7 +192,50 @@ function getDateStr(add, type) {
 		d = "0" + d;
 	}
 	return y+"-"+m+"-"+d; 
-} 
+}
+
+/*
+ * 表单数据填充
+ * @param data 数据源
+ * @param container 表单容器
+ * @param callback 填充每个字段前的回调
+ * @return
+ */
+$.setFormValue = function(data, container, callback){
+    container = container || "body";
+    for(var attr in data){
+        if(typeof callback === "function"){
+            var result = callback.call(container, attr, data[attr]);
+            if(result === true){
+                continue;
+            }else if(result === false){
+                break;
+            }
+        }
+        //用id查找
+        var $ele = $(container).find("#" + attr);
+        if($ele.length > 0){
+            if($ele.prop("tagName") === "INPUT" || $ele.prop("tagName") === "TEXTAREA" || $ele.prop("tagName") === "SELECT"){
+                $ele.val(data[attr]);
+            }else if($ele.prop("tagName") === "IMG"){
+                $ele.attr("src", data[attr]);
+            }else{
+                $ele.html(data[attr]);
+            }
+        }else{
+            //用name查找，只对radio有效
+            $ele = $(container).find("[name='" + attr + "']");
+            if($ele.attr("type") === "radio"){
+                $ele.each(function(){
+                    if($(this).attr("data-value") == data[attr]){
+                        $(this).prop("checked", true);
+                        return false;
+                    }
+                });
+            }
+        }
+    }
+};
 
 /*
  * 获得表单中的值，返回json格式的对象

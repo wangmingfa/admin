@@ -19,9 +19,9 @@ block content
           th 操作
       tbody
         each menu, index in menus
-          tr.toggle-menu(data-target="[data-id='submenu-#{index}']")
+          tr(data-target="[data-id='submenu-#{index}']")
             td.center(style="width:8%;")
-              i.toggle-menu-i.icon-plus(data-target="[data-id='submenu-#{index}']", style="cursor:pointer;")
+              i.toggle-menu.icon-plus(data-target="[data-id='submenu-#{index}']", style="cursor:pointer;")
             td #{menu.text}
             td
               i(class="#{menu.icon}")
@@ -31,8 +31,11 @@ block content
             td #{menu.type == 0 ? "后台菜单" : (menu.type == 1 ? "逻辑菜单" : "两者都是")}
             td #{menu.level}
             td
-              a.action(href="/admin/menu/add?menuId=#{menu._id}") 修改
-              a.action.del(data-id="#{menu._id}", href="javascript:;") 删除
+              .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
+                a.green.edit(data-id="#{menu._id}", href="javascript:;")
+                  i.icon-edit.bigger-130
+                a.red.del(data-id="#{menu._id}", href="javascript:;")
+                  i.icon-trash.bigger-130
           each submenu in menu.submenu
             tr.hidden(data-id="submenu-#{index}").bg-gray
               td.center(style="width:8%;")
@@ -47,8 +50,11 @@ block content
               td #{submenu.type == 0 ? "后台菜单" : (submenu.type == 1 ? "逻辑菜单" : "两者都是")}
               td #{submenu.level}
               td
-                a.action(href="/admin/menu/add?menuId=#{submenu._id}") 修改
-                a.action.del(data-id="#{submenu._id}", href="javascript:;") 删除
+                .visible-md.visible-lg.hidden-sm.hidden-xs.action-buttons
+                  a.green.edit(data-id="#{submenu._id}", href="javascript:;")
+                    i.icon-edit.bigger-130
+                  a.red.del(data-id="#{submenu._id}", href="javascript:;")
+                    i.icon-trash.bigger-130
 
   script(src="/javascripts/menu/list.js")
   style.
@@ -57,7 +63,4 @@ block content
     }
     th, td{
       width: 13.142%;
-    }
-    .action{
-      padding-right: 5px;
     }

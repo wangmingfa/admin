@@ -14,10 +14,10 @@ router.post("/", function(req, res, next){
     var _user = req.body.user;
     if(!_user || !_user.username || !_user.password) return res.redirect("/admin/login");
     User.signIn(_user, function(err, result){
-        if(err) return res.json({success: false, msg: err.message});
+        if(err) return res.json({success: false, message: err.message});
         req.session.user = result;
         //global.user = result;
-        res.json({success: true, msg: "ok"});
+        res.json({success: true, message: "ok"});
     });
 });
 

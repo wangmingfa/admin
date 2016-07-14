@@ -2,21 +2,21 @@ var mongoose = require("mongoose");
 var MenuSchema = new mongoose.Schema({
     icon: String,
     text: String,
-    isLeaf: Boolean,
+    isLeaf: Number,
     href: String,
     level: Number,
     fatherId: String,
     type: Number
 });
 
-/*MenuSchema.statics = {
-    fetch:function(callback){
+MenuSchema.statics = {
+    fetch: function(callback){
         return this.find({}).exec(callback);
     },
-    find:function(args, callback){
-        return this.find(args).exec(callback);
+    getMenuById: function(id, callback){
+        return this.findOne({_id: id}).exec(callback);
     }
-}*/
+}
 
 
 module.exports = MenuSchema;

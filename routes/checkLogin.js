@@ -1,4 +1,5 @@
 var Menu = require("../model/menu");
+var User = require("../model/user");
 var path = [];
 
 module.exports = function(req, res, next){
@@ -8,18 +9,27 @@ module.exports = function(req, res, next){
     var currentPage = req.originalUrl;// || "/admin/" + req.params.menu + "/" + req.params.submenu;
     console.log("[" + getClientIp(req) + "]正在访问：" + currentPage);
 
-    var menus = [];
-    Menu.find({}, function(err, result){
-        if(!err) menus = result;
-        menus = getMenuTree(menus, currentPage);
-        req.data = {
-            menus: menus,
-            currentPage: currentPage,
-            path: path,
-            user: req.session.user
-        };
-        next();
+    var user =req.session.user;
+
+    //检查用户状态
+    User.getUserById(user._id, function(err, result){
+        if(err || result.status != 1) return res.redirect("/admin/logout");
+
+        var menus = [];
+        Menu.fetch(function(err, result){
+            if(!err) menus = result;
+            menus = getMenuTree(menus, currentPage);
+            req.data = {
+                menus: menus,
+                currentPage: currentPage,
+                path: path,
+                user: req.session.user
+            };
+            next();
+        });
+
     });
+
 }
 
 

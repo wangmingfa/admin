@@ -14,7 +14,7 @@ $.modal = function(options){
                             '</div>' +
                             '<div class="modal-footer">' +
                                 '<button data-bb-handler="cancel" type="button" data-dismiss="modal" class="btn btn-default"><i class="icon-remove bigger-110"></i>取消</button>' +
-                                '<button data-bb-handler="confirm" type="button" class="btn btn-primary"><i class="icon-ok bigger-110"></i>确定</button></div>' +
+                                '<button data-bb-handler="confirm" type="button" class="btn btn-primary btn-confirm"><i class="icon-ok bigger-110"></i>确定</button></div>' +
                             '</div>' +
                         '</div>' +
                     '</div>';
@@ -33,6 +33,7 @@ $.modal = function(options){
         onHidden: null,//此事件在模态框被隐藏（并且同时在 CSS 过渡效果完成）之后被触发。
         beforeShow: null,//显示之前调用
         resetOnHidden: false,//隐藏模态框时是否清空所有表单数据
+        onConfirm: null,
     }, options);
 
     var $modal = $($.getResultFromTemplate(template, settings));
@@ -46,6 +47,12 @@ $.modal = function(options){
     $modal.hide = function(){
         this.modal("hide");
     }
+
+    $modal.find(".btn-confirm").click(function(){
+        var isClose = typeof settings.onConfirm === "function" ? settings.onConfirm() : true;
+        isClose = typeof isClose === "boolean" ? isClose : true;
+        if(isClose) $modal.hide();
+    });
 
     return $modal.modal(settings);
 }

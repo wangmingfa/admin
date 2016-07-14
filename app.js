@@ -15,10 +15,11 @@ db.once("open", function(callback){
     console.log("数据库已连接");
 });
 //路由
-var routes = require('./routes/index');
+var index = require('./routes/index');
 var users = require('./routes/users');
 var menus = require('./routes/menus');
 var login = require("./routes/login");
+var signup = require("./routes/signup");
 var logout = require("./routes/logout");
 
 var app = express();
@@ -43,10 +44,11 @@ app.use(session(({
 })));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', index);
 app.use('/admin/user', users);
 app.use('/admin/menu', menus);
 app.use("/admin/login", login);
+app.use("/admin/signup", signup);
 app.use("/admin/logout", logout);
 
 // catch 404 and forward to error handler
